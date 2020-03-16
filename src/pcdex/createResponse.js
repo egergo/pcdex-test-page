@@ -12,8 +12,13 @@ export async function createResponse({
   phoneNumber,
   info
 }) {
+  const masterKeySecretBuffer = new TextEncoder().encode(masterKeySecret);
+
   const encryptionSalt = await randomNonce256();
-  const encryptionKey = await hkdfSimpleSha256(masterKeySecret, encryptionSalt);
+  const encryptionKey = await hkdfSimpleSha256(
+    masterKeySecretBuffer,
+    encryptionSalt
+  );
 
   const { iv, encrypted: encryptedPhoneNumber } = await aesCbcEncrypt(
     encryptionKey,
@@ -25,7 +30,7 @@ export async function createResponse({
 
   const insensitiveMacSalt = await randomNonce256();
   const insensitiveMacKey = await hkdfSimpleSha256(
-    masterKeySecret,
+    masterKeySecretBuffer,
     insensitiveMacSalt
   );
   const insensitive = `pcdex|${masterKeyId}|${toBase64(
@@ -36,7 +41,7 @@ export async function createResponse({
 
   const sensitiveMacSalt = await randomNonce256();
   const sensitiveMacKey = await hkdfSimpleSha256(
-    masterKeySecret,
+    masterKeySecretBuffer,
     sensitiveMacSalt
   );
   const sensitive = `${insensitiveSigned}|${toBase64(iv)}|${toBase64(

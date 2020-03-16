@@ -1,8 +1,4 @@
-import {
-  hkdfSimpleSha256,
-  hmacSha256,
-  aesCbcDecrypt
-} from "../utils/crypto";
+import { hkdfSimpleSha256, hmacSha256, aesCbcDecrypt } from "../utils/crypto";
 import { toBase64, fromBase64 } from "../utils/base64";
 
 export async function verifyResponse({
@@ -35,13 +31,15 @@ export async function verifyResponse({
   addResult256BitBase64(result, "sensitiveMacSalt", sensitiveMacSalt);
   addResult(result, "info", usedInfo, info);
 
+  const masterKeySecretBuffer = new TextEncoder().encode(masterKeySecret);
+
   let insensitive;
   let insensitiveMac;
 
   try {
     insensitive = `${protoHeader}|${usedMasterKeyId}|${encryptionSalt}|${usedInfo}|${usedMaskedPhoneNumber}|${insensitiveMacSalt}|`;
     const insensitiveMacKey = await hkdfSimpleSha256(
-      masterKeySecret,
+      masterKeySecretBuffer,
       fromBase64(insensitiveMacSalt)
     );
     insensitiveMac = await hmacSha256(insensitiveMacKey, insensitive);
@@ -64,7 +62,7 @@ export async function verifyResponse({
     const insensitiveSigned = `${insensitive}${toBase64(insensitiveMac)}`;
     const sensitive = `${insensitiveSigned}|${iv}|${encryptedPhoneNumber}|${sensitiveMacSalt}|`;
     const sensitiveMacKey = await hkdfSimpleSha256(
-      masterKeySecret,
+      masterKeySecretBuffer,
       fromBase64(sensitiveMacSalt)
     );
     const sensitiveMac = await hmacSha256(sensitiveMacKey, sensitive);
@@ -82,7 +80,7 @@ export async function verifyResponse({
 
   try {
     const decryptionKey = await hkdfSimpleSha256(
-      masterKeySecret,
+      masterKeySecretBuffer,
       fromBase64(encryptionSalt)
     );
     usedPhoneNumber = await aesCbcDecrypt(

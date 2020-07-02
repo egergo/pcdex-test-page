@@ -99,7 +99,7 @@ export async function verifyResponse({
   }
 
   const maskedPhoneNumber =
-    phoneNumber.slice(0, 3) + "********" + phoneNumber.slice(-2);
+    phoneNumber.slice(0, 4) + "****" + phoneNumber.slice(-4);
 
   try {
     addResult(

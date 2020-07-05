@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/pcdex-test-page/static/css/main.170f56e8.chunk.css",
-    "main.js": "/pcdex-test-page/static/js/main.96870348.chunk.js",
-    "main.js.map": "/pcdex-test-page/static/js/main.96870348.chunk.js.map",
+    "main.js": "/pcdex-test-page/static/js/main.55d0f4d7.chunk.js",
+    "main.js.map": "/pcdex-test-page/static/js/main.55d0f4d7.chunk.js.map",
     "runtime-main.js": "/pcdex-test-page/static/js/runtime-main.69a97313.js",
     "runtime-main.js.map": "/pcdex-test-page/static/js/runtime-main.69a97313.js.map",
     "static/css/2.de424728.chunk.css": "/pcdex-test-page/static/css/2.de424728.chunk.css",
     "static/js/2.a0f2fe73.chunk.js": "/pcdex-test-page/static/js/2.a0f2fe73.chunk.js",
     "static/js/2.a0f2fe73.chunk.js.map": "/pcdex-test-page/static/js/2.a0f2fe73.chunk.js.map",
     "index.html": "/pcdex-test-page/index.html",
-    "precache-manifest.87c6f00fb698ede52490785c5cf8b019.js": "/pcdex-test-page/precache-manifest.87c6f00fb698ede52490785c5cf8b019.js",
+    "precache-manifest.9e8d33667309e868e019b6a38919576c.js": "/pcdex-test-page/precache-manifest.9e8d33667309e868e019b6a38919576c.js",
     "service-worker.js": "/pcdex-test-page/service-worker.js",
     "static/css/2.de424728.chunk.css.map": "/pcdex-test-page/static/css/2.de424728.chunk.css.map",
     "static/css/main.170f56e8.chunk.css.map": "/pcdex-test-page/static/css/main.170f56e8.chunk.css.map",
@@ -20,6 +20,6 @@
     "static/css/2.de424728.chunk.css",
     "static/js/2.a0f2fe73.chunk.js",
     "static/css/main.170f56e8.chunk.css",
-    "static/js/main.96870348.chunk.js"
+    "static/js/main.55d0f4d7.chunk.js"
   ]
 }

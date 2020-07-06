@@ -98,23 +98,31 @@ export async function verifyResponse({
     });
   }
 
-  const maskedPhoneNumber =
-    phoneNumber.slice(0, 4) + "****" + phoneNumber.slice(-4);
-
-  try {
-    addResult(
-      result,
-      "maskedPhoneNumber",
-      usedMaskedPhoneNumber,
-      maskedPhoneNumber
-    );
-  } catch (ex) {
+  if (usedMaskedPhoneNumber === "") {
     result.push({
       name: "maskedPhoneNumber",
-      ok: false,
-      value: "N/A",
-      expected: maskedPhoneNumber
+      ok: true,
+      value: "not provided"
     });
+  } else {
+    const maskedPhoneNumber =
+      phoneNumber.slice(0, 4) + "****" + phoneNumber.slice(-4);
+
+    try {
+      addResult(
+        result,
+        "maskedPhoneNumber",
+        usedMaskedPhoneNumber,
+        maskedPhoneNumber
+      );
+    } catch (ex) {
+      result.push({
+        name: "maskedPhoneNumber",
+        ok: false,
+        value: "N/A",
+        expected: maskedPhoneNumber
+      });
+    }
   }
 
   return result;

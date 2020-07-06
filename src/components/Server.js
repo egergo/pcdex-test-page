@@ -13,6 +13,7 @@ export class Server extends Component {
       phoneNumber: defaultPhoneNumber || "",
       info: defaultInfo || "",
       response: "",
+      includeMaskedPhoneNumber: true,
       debugInfo: null
     };
   }
@@ -27,6 +28,12 @@ export class Server extends Component {
     this.setState({ info: event.target.value }, () => this.fireOnChange());
   };
 
+  handleMaskedChanged = event => {
+    this.setState({ includeMaskedPhoneNumber: event.target.checked }, () =>
+      this.fireOnChange()
+    );
+  };
+
   fireOnChange() {
     const { phoneNumber, info, response, debugInfo } = this.state;
     this.props.onChange &&
@@ -36,14 +43,15 @@ export class Server extends Component {
   handleEncryptClick = async event => {
     event.preventDefault();
 
-    const { phoneNumber, info } = this.state;
+    const { phoneNumber, info, includeMaskedPhoneNumber } = this.state;
     const { masterKeyId, masterKeySecret } = this.props;
 
     const response = await createResponse({
       masterKeyId,
       masterKeySecret,
       phoneNumber,
-      info
+      info,
+      includeMaskedPhoneNumber
     });
     this.setState(
       {
@@ -55,7 +63,13 @@ export class Server extends Component {
   };
 
   render() {
-    const { response, phoneNumber, info, debugInfo } = this.state;
+    const {
+      response,
+      phoneNumber,
+      info,
+      includeMaskedPhoneNumber,
+      debugInfo
+    } = this.state;
 
     return (
       <Form>
@@ -80,6 +94,15 @@ export class Server extends Component {
             onChange={this.handleInfoChange}
           />
         </InputGroup>
+
+        <Form.Group className="mb-3" controlId="formBasicCheckbox">
+          <Form.Check
+            type="checkbox"
+            label="Include masked phone number"
+            checked={includeMaskedPhoneNumber}
+            onChange={this.handleMaskedChanged}
+          />
+        </Form.Group>
 
         <Button
           variant="primary"

@@ -26,9 +26,9 @@ export class ResponseDebugInfo extends Component {
       <>
         <Field
           name="maskedPhoneNumber"
-          value={maskedPhoneNumber}
+          value={maskedPhoneNumber || "not included"}
           code=""
-          description="Phone number with the middle numbers masked. Privacy safe for display purposes"
+          description="Phone number with the middle numbers masked. Privacy safe for display purposes. Optional"
         />
         <Field
           name="encryptionSalt"

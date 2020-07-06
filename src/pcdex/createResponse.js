@@ -10,7 +10,8 @@ export async function createResponse({
   masterKeyId,
   masterKeySecret,
   phoneNumber,
-  info
+  info,
+  includeMaskedPhoneNumber
 }) {
   const masterKeySecretBuffer = new TextEncoder().encode(masterKeySecret);
 
@@ -25,8 +26,9 @@ export async function createResponse({
     phoneNumber
   );
 
-  const maskedPhoneNumber =
-    phoneNumber.slice(0, 3) + "********" + phoneNumber.slice(-2);
+  const maskedPhoneNumber = includeMaskedPhoneNumber
+    ? phoneNumber.slice(0, 4) + "****" + phoneNumber.slice(-4)
+    : "";
 
   const insensitiveMacSalt = await randomNonce256();
   const insensitiveMacKey = await hkdfSimpleSha256(

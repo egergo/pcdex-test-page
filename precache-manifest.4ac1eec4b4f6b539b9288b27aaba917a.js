@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "da8c348a8eb4a1d2d7b9af11133a9b67",
+    "revision": "f1fc70679ef14dbcee2a675fd61112df",
     "url": "/pcdex-test-page/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/pcdex-test-page/static/css/2.de424728.chunk.css"
   },
   {
-    "revision": "746f2b2f5bce73f9673b",
+    "revision": "a65eab0f4c33d4ad170b",
     "url": "/pcdex-test-page/static/css/main.170f56e8.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/pcdex-test-page/static/js/2.a0f2fe73.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "746f2b2f5bce73f9673b",
-    "url": "/pcdex-test-page/static/js/main.55d0f4d7.chunk.js"
+    "revision": "a65eab0f4c33d4ad170b",
+    "url": "/pcdex-test-page/static/js/main.5d49115b.chunk.js"
   },
   {
     "revision": "20e41a5944dd7c086a32",
